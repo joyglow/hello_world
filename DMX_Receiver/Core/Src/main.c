@@ -46,36 +46,26 @@ static void MX_USART1_UART_Init(void);
 
 int main(void)
 {
-  /* USER CODE BEGIN 1 */
-  /* USER CODE END 1 */
-
   /* MCU Configuration--------------------------------------------------------*/
-
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
-
-  /* Configure the system clock */
   SystemClock_Config();
 
-  /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM2_Init();
   MX_USART1_UART_Init();
+
   /* USER CODE BEGIN 2 */
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
   DMX_Init(&huart1);
   /* USER CODE END 2 */
 
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
-    /* USER CODE BEGIN 3 */
+    /* USER CODE BEGIN WHILE */
     uint8_t level = DMX_GetChannelLevel(DMX_LED_CHANNEL);
     __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, level);
     HAL_Delay(5);
-    /* USER CODE END 3 */
+    /* USER CODE END WHILE */
   }
 }
 
@@ -159,6 +149,7 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+/* Additional user functions can be placed here. */
 /* USER CODE END 4 */
 
 /**
