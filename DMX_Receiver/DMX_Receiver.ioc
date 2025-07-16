@@ -1,0 +1,47 @@
+###############################################################################
+## STM32CubeMX Project Configuration File
+## Project: DMX_Receiver
+###############################################################################
+
+# Microcontroller -------------------------------------------------------------
+Mcu.Name=STM32F103C8Tx
+Mcu.Family=STM32F1
+Mcu.SubFamily=STM32F103
+Mcu.Package=LQFP48
+Mcu.IP0=TIM2
+Mcu.IP1=USART1
+Mcu.IP2=SYS
+Mcu.UserName=STM32F103C8Tx
+
+# RCC ------------------------------------------------------------------------
+RCC.Mode=HSE+PLL
+RCC.HSE_VALUE=8000000
+RCC.PLLSource=HSE
+RCC.PLLMul=PLL_MUL9
+RCC.SYSCLKFreq_VALUE=72000000
+
+# USART1 Configuration --------------------------------------------------------
+USART1.VirtualMode=Asynchronous
+USART1.IPParameters=VirtualMode,BaudRate,WordLength,Parity,StopBits,InterruptEnable
+USART1.BaudRate=250000
+USART1.WordLength=UART_WORDLENGTH_8B
+USART1.Parity=UART_PARITY_NONE
+USART1.StopBits=UART_STOPBITS_2
+USART1.InterruptEnable=USART1_IRQn
+
+# TIM2 Configuration ----------------------------------------------------------
+TIM2.Channel-1=PWM Generation1 CH1
+TIM2.IPParameters=Prescaler,Period,Channel-1
+TIM2.Prescaler=71
+TIM2.Period=255
+
+# GPIO Configuration ----------------------------------------------------------
+PA0.Mode=PWM Generation1 CH1
+PA10.Mode=USART1_RX
+
+# NVIC ------------------------------------------------------------------------
+NVIC.0=USART1_IRQn,5,0,1,0,0
+
+# Project ---------------------------------------------------------------------
+PMS.ProjectName=DMX_Receiver
+PMS.Toolchain=STM32CubeIDE
