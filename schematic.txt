@@ -1,0 +1,56 @@
+DMX512 Receiver - STM32F103C8T6 Hardware Connections
+=====================================================
+
+Power Supply:
+-------------
+VCC (3.3V) -> STM32 VCC
+GND -> STM32 GND
+
+Crystal Oscillator:
+-------------------
+8MHz Crystal:
+  Pin 1 -> STM32 PH0 (OSC_IN)
+  Pin 2 -> STM32 PH1 (OSC_OUT)
+  Add 22pF capacitors from each pin to GND
+
+DMX512 Input:
+-------------
+DMX Signal -> STM32 PA10 (USART1_RX)
+(May need RS485 to TTL converter if DMX uses RS485)
+
+LED Control:
+------------
+STM32 PA1 (TIM2_CH1) -> 220Ω Resistor -> LED Anode
+LED Cathode -> GND
+
+Status LED:
+-----------
+STM32 PC13 -> 220Ω Resistor -> LED Anode
+LED Cathode -> GND
+
+Debug Output (Optional):
+-----------------------
+STM32 PA9 (USART1_TX) -> USB-TTL converter for debug output
+
+Programming:
+------------
+ST-Link V2:
+  SWDIO -> STM32 PA13
+  SWCLK -> STM32 PA14
+  GND -> STM32 GND
+  VCC -> 3.3V (if needed)
+
+Reset Circuit:
+--------------
+STM32 NRST -> 10kΩ pull-up to 3.3V
+STM32 BOOT0 -> GND (for normal operation)
+
+Boot Mode:
+----------
+BOOT0 = 0: Normal operation
+BOOT0 = 1: Bootloader mode
+
+Note: For DMX512 reception, ensure proper signal levels:
+- DMX typically uses 0-5V levels
+- STM32 inputs are 3.3V tolerant but prefer 0-3.3V
+- Use level shifter if needed for 5V DMX signals
